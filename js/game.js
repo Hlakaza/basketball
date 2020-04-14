@@ -1,5 +1,7 @@
-game_width = 400;
-game_height = 640;
+var game_width = 400;
+var game_height = 640;
+var given_balls = 10;
+var current_balls = document.getElementById('balls').innerHTML;
 // NOTE: Originally 640x1000. Other possible sizes: 512x800, 400x625
 var game = new Phaser.Game(game_width, game_height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
@@ -119,14 +121,16 @@ function update() {
     ball.body.collides([collisionGroup], hitRim, this);
   }
 
-  if (ball && ball.body.velocity.y > 0 && ball.body.y > 200 && !ball.isBelowHoop) {
+  if (ball && ball.body.velocity.y > 0 && ball.body.y > 188 && !ball.isBelowHoop) {
     ball.isBelowHoop = true;
     ball.body.collideWorldBounds = false;
     var rand = Math.floor(Math.random() * 5);
     if (ball.body.x > 151 && ball.body.x < 249) {
       emojiName = "win" + rand;
       current_score += 10;
+      given_balls--;
       current_score_text.text = current_score;
+      current_balls.innerHTML = given_balls;
       score_sound.play();
     } else {
       emojiName = "lose" + rand;
@@ -174,8 +178,9 @@ function createBall() {
   var xpos;
   if (current_score === 0) {
     xpos = 200;
-  } else {
-    xpos = 60 + Math.random() * 280;
+  } 
+  else {
+    xpos = 200
   }
   spawn.play();
   ball = game.add.sprite(xpos, 547, 'ball');
