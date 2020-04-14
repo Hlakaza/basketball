@@ -1,4 +1,4 @@
-var game_width = 400;
+var game_width = 425;
 var game_height = 640;
 var given_balls = 10;
 var current_balls = document.getElementById('balls').innerHTML;
@@ -6,7 +6,7 @@ var current_balls = document.getElementById('balls').innerHTML;
 var game = new Phaser.Game(game_width, game_height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 function preload() {
-  game.load.image('background', 'assets/new/Background.png')
+  game.load.image('background', 'assets/images/bgBasketball.jpg')
   game.load.image('ball', 'assets/images/ball.png');
   game.load.image('hoop', 'assets/images/hoop.png');
   game.load.image('side rim', 'assets/images/side_rim.png');
@@ -78,7 +78,7 @@ function create() {
   spawn = game.add.audio('spawn');
 
 	game.stage.backgroundColor = "#dddddd";
-  game.bg = this.add.image(0,0, 'background')
+  game.bg = this.add.image(0, 0, 'background')
 
   // high_score_text = game.add.text(450, 25, 'High Score\n' + high_score, { font: 'Arial', fontSize: '32px', fill: '#000', align: 'center' });
   current_score_text = game.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#000', align: 'center' }); // 300, 500
