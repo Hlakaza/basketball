@@ -3,7 +3,7 @@ var game_height = 640;
 var given_balls = 10;
 var current_balls = document.getElementById('balls').innerHTML;
 // NOTE: Originally 640x1000. Other possible sizes: 512x800, 400x625
-var game = new Phaser.Game(game_width, game_height, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(game_width, game_height, Phaser.AUTO, 'phaser-game', { preload: preload, create: create, update: update },  {transparent: true});
 
 function preload() {
   game.load.image('background', 'assets/images/bgBasketball.jpg')
@@ -77,8 +77,8 @@ function create() {
   fail.volume = 0.1;
   spawn = game.add.audio('spawn');
 
-	game.stage.backgroundColor = "#dddddd";
-  game.bg = this.add.image(0, 0, 'background')
+	game.stage.backgroundColor = "transparent";
+  // game.bg = this.add.image(0, 0, 'background')
 
   // high_score_text = game.add.text(450, 25, 'High Score\n' + high_score, { font: 'Arial', fontSize: '32px', fill: '#000', align: 'center' });
   current_score_text = game.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#000', align: 'center' }); // 300, 500

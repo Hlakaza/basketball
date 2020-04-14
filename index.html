@@ -9,11 +9,20 @@
     <style type="text/css">
         body {
             margin: 0;
+            background: rgba(0, 0, 0, 0.85);
         }
-				canvas {
-					margin: 0 auto;
+        canvas {
+          margin: 0 auto;
 					border: 0;
+          background-color: transparent;
+        }
+				#phaser-game {
           background-image: url('./assets/new/Background.png');
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          height: 640px;
+          width: 1024px;
+          margin: auto;
 				}
 				span {
 					display: block;
@@ -27,11 +36,8 @@
     </style>
 </head>
 <body>
-  <div id="phaser-game">
-  </div>
-  <div id="balls">
-  </div>
-
+  <div id="phaser-game"></div>
+  <div id="balls"></div>
   <script src="./js/game.js"></script>
 </body>
 </html>
