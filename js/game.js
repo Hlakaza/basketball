@@ -84,6 +84,7 @@ function create() {
   current_score_text = game.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#000', align: 'center' }); // 300, 500
   current_best_text = game.add.text(143, 281, '', { font: 'Arial', fontSize: '20px', fill: '#000', align: 'center' });// 230, 450
   current_best_score_text = game.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#00e6e6', align: 'center' }); // 300, 500
+  gameover_text = game.add.text(game_width/2, 350, '', { font: 'Arial', fontSize: '40px', fill: '#00e6e6', align: 'center' }); // 300, 500
 
   hoop = game.add.sprite(88, 62, 'hoop'); // 141, 100
   left_rim = game.add.sprite(150, 184, 'side rim'); // 241, 296
@@ -133,6 +134,7 @@ function update() {
       current_balls.innerHTML = given_balls;
       score_sound.play();
     } else {
+      given_balls--;
       emojiName = "lose" + rand;
       fail.play();
       if (current_score > high_score) {
@@ -151,10 +153,12 @@ function update() {
     moveInTween.onComplete.add(tweenOut, this);
   }
 
-  if (ball && ball.body.y > game_height) {
+  if (ball && ball.body.y > game_height && given_balls) {
     game.physics.p2.gravity.y = 0;
     ball.kill();
     createBall();
+  } else if(!given_balls) {
+    gameover_text.text = 'Game Over'
   }
 
 }
