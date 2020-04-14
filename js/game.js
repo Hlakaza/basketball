@@ -2,6 +2,11 @@ var game_width = 425;
 var game_height = 640;
 var given_balls = 10;
 var current_balls = document.getElementById('balls').innerHTML;
+var progressEl = document.getElementById('progress');
+var ballsLeftEl = document.getElementById('ballsLeft');
+var ballsLeftEl = document.getElementById('ballsLeft');
+var pointsEl = document.getElementById('points');
+
 // NOTE: Originally 640x1000. Other possible sizes: 512x800, 400x625
 var game = new Phaser.Game(game_width, game_height, Phaser.AUTO, 'phaser-game', { preload: preload, create: create, update: update },  {transparent: true});
 
@@ -130,7 +135,10 @@ function update() {
       emojiName = "win" + rand;
       current_score += 10;
       given_balls--;
-      current_score_text.text = current_score;
+      progressEl.style.width = current_score + '%'
+      ballsLeftEl.style.width = given_balls * 10 + '%'
+        pointsEl.innerHTML = current_score;
+      // current_score_text.text = current_score;
       current_balls.innerHTML = given_balls;
       score_sound.play();
     } else {
@@ -142,9 +150,9 @@ function update() {
         // 	high_score_text.text = 'High Score\n' + high_score;
       }
       // current_score = 0;
-      current_score_text.text = '';
-      current_best_text.text = 'Current Best';
-      current_best_score_text.text = high_score;
+      // current_score_text.text = '';
+      // current_best_text.text = 'Current Best';
+      // current_best_score_text.text = high_score;
     }
     emoji = game.add.sprite(180, 100, emojiName);
     emoji.scale.setTo(0.25, 0.25);
